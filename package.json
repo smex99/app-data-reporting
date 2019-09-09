@@ -1,0 +1,35 @@
+{
+	"name": "test_report",
+	"version": "1.0.0",
+	"description": "app data reporting (BB8 and Focus prediction results) from MongoDB and send metrics.",
+	"main": "index.js",
+	"scripts": {
+		"server": "nodemon app/index.js",
+		"watch": "nodemon --watch app/index.js",
+		"client": "npm start --prefix client",
+		"start": "concurrently \"npm run server \" \"npm run client\"",
+		"dev": "nodemon --exec npm start"
+	},
+	"keywords": [
+		"data",
+		"nifi",
+		"react",
+		"ML"
+	],
+	"author": "Amine AMEZIANE",
+	"license": "MIT",
+	"dependencies": {
+		"body-parser": "^1.18.3",
+		"concurrently": "^4.1.0",
+		"cors": "^2.8.5",
+		"cross-env": "^5.2.0",
+		"express": "^4.16.4",
+		"express-promise-router": "^3.0.3",
+		"mongodb": "^3.3.2",
+		"mongoose": "^5.4.20",
+		"morgan": "^1.9.1"
+	},
+	"devDependencies": {
+		"nodemon": "^1.18.10"
+	}
+}
