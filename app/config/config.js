@@ -1,7 +1,7 @@
 module.exports = {
 	port: process.env.PORT || 5000,
 	storage: {
-		bucket: '/home/lake/Documents/data-reporting/public/rma_all_invoice/'
+		bucket: '/home/lake/Documents/rma_all_invoice/'
 	},
 	db: {
 		url: 'mongodb://192.168.1.128:27017/konta_rma_2',

@@ -3,6 +3,7 @@ const cors = require('cors');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const config = require('./config/config');
+const path = require('path');
 
 const app = express();
 
@@ -20,9 +21,24 @@ app.use('/api/report', require('./routes/report'));
 app.get('/image/:id', (req, res) => {
 	const { filename } = req.params;
 
-	res.sendFile(
-		`/home/lake/Documents/data-reporting/public/rma_all_invoice/${filename}.jpeg`
-	);
+	var options = {
+		root: path.join(__dirname, 'public'),
+		dotfiles: 'deny',
+		headers: {
+			'x-timestamp': Date.now(),
+			'x-sent': true
+		}
+	};
+
+	res.sendFile(`${filename}`, options, error => {
+		if (error) {
+			next(error);
+		} else {
+			console.log('Sent:', fileName);
+		}
+	});
+
+	// res.sendFile(`/home/lake/Documents/rma_all_invoice/${filename}.jpeg`);
 });
 
 // Run the app on port 5000
