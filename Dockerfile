@@ -1,5 +1,5 @@
 FROM ubuntu:latest
-LABEL app="app to query data (BB8 and Focus prediction results) from MongoDB and show metrics."
+LABEL app="App for AI report (BB8 and Focus prediction results) from MongoDB."
 
 RUN apt-get update
 RUN apt-get install -y nodejs npm

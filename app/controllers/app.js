@@ -2,12 +2,6 @@ const mongodb = require('mongodb');
 const MongoClient = mongodb.MongoClient;
 const config = require('../config/config');
 
-focus_collection_remote = 'invoiceReadingResult_MAR_2';
-focus_collection_local = 'invoiceReadingResult';
-
-bb8_collection_remote = 'BB8_prediction_results';
-bb8_collection_local = 'bb8ReadingResult';
-
 module.exports = {
 	// Output of Fosus
 	invoiceReadingResult: async (req, res, next) => {
@@ -16,7 +10,7 @@ module.exports = {
 			{ useNewUrlParser: true, useUnifiedTopology: true },
 			(error, client) => {
 				const db = client.db('konta_rma_2');
-				const collection = db.collection(focus_collection_remote);
+				const collection = db.collection(config.collection.focus.remote);
 
 				collection.find({}).toArray((err, result) => {
 					if (err) throw err;
@@ -34,7 +28,7 @@ module.exports = {
 			{ useNewUrlParser: true, useUnifiedTopology: true },
 			(error, client) => {
 				const db = client.db('konta_rma_2');
-				const collection = db.collection(bb8_collection_remote);
+				const collection = db.collection(config.collection.bb8.remote);
 
 				collection.find({}).toArray((err, result) => {
 					if (err) throw err;
@@ -52,7 +46,7 @@ module.exports = {
 			{ useNewUrlParser: true, useUnifiedTopology: true },
 			(error, client) => {
 				const db = client.db('konta_rma_2');
-				const collection = db.collection(focus_collection_remote);
+				const collection = db.collection(config.collection.focus.remote);
 
 				collection
 					.aggregate([
@@ -87,7 +81,7 @@ module.exports = {
 			{ useNewUrlParser: true, useUnifiedTopology: true },
 			(error, client) => {
 				const db = client.db('konta_rma_2');
-				const collection = db.collection(focus_collection_remote);
+				const collection = db.collection(config.collection.focus.remote);
 
 				collection
 					.aggregate([
@@ -116,7 +110,7 @@ module.exports = {
 			{ useNewUrlParser: true, useUnifiedTopology: true },
 			(error, client) => {
 				const db = client.db('konta_rma_2');
-				const collection = db.collection(bb8_collection_remote);
+				const collection = db.collection(config.collection.bb8.remote);
 
 				collection
 					.aggregate([
@@ -145,7 +139,7 @@ module.exports = {
 			{ useNewUrlParser: true, useUnifiedTopology: true },
 			(error, client) => {
 				const db = client.db('konta_rma_2');
-				const collection = db.collection(focus_collection_remote);
+				const collection = db.collection(config.collection.focus.remote);
 
 				// Request to aggregate the predictions by number of class predicted
 				collection.find({ prediction: {} }).toArray((err, result) => {
@@ -166,7 +160,7 @@ module.exports = {
 			{ useNewUrlParser: true, useUnifiedTopology: true },
 			(error, client) => {
 				const db = client.db('konta_rma_2');
-				const collection = db.collection(focus_collection_remote);
+				const collection = db.collection(config.collection.focus.remote);
 
 				collection.find({ invoice_id: id }).toArray((err, result) => {
 					if (err) throw err;
@@ -186,7 +180,7 @@ module.exports = {
 			{ useNewUrlParser: true, useUnifiedTopology: true },
 			(error, client) => {
 				const db = client.db('konta_rma_2');
-				const collection = db.collection(bb8_collection_remote);
+				const collection = db.collection(config.collection.bb8.remote);
 
 				collection.find({ invoice_id: id }).toArray((err, result) => {
 					if (err) throw err;
@@ -205,7 +199,7 @@ module.exports = {
 			{ useNewUrlParser: true, useUnifiedTopology: true },
 			(error, client) => {
 				const db = client.db('konta_rma_2');
-				const collection = db.collection(bb8_collection_remote);
+				const collection = db.collection(config.collection.bb8.remote);
 
 				collection
 					.aggregate({
@@ -229,7 +223,7 @@ module.exports = {
 			{ useNewUrlParser: true, useUnifiedTopology: true },
 			(error, client) => {
 				const db = client.db('konta_rma_2');
-				const collection = db.collection('invoice');
+				const collection = db.collection(config.collection.invoice.remote);
 
 				collection
 					.find({ _id: new mongodb.ObjectID(id) })

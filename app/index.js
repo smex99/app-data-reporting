@@ -20,7 +20,9 @@ app.use('/api/report', require('./routes/report'));
 app.get('/image/:id', (req, res) => {
 	const { filename } = req.params;
 
-	res.sendFile(`./public/invoice.png`, { root: __dirname });
+	res.sendFile(
+		`/home/lake/Documents/data-reporting/public/rma_all_invoice/${filename}.jpeg`
+	);
 });
 
 // Run the app on port 5000
