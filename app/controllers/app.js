@@ -142,7 +142,15 @@ module.exports = {
 				const collection = db.collection(config.collection.focus.remote);
 
 				// Request to aggregate the predictions by number of class predicted
-				collection.find({ prediction: {} }).toArray((err, result) => {
+				/* collection
+					.aggregate({ $project: { $match: {} } })
+					.toArray((err, result) => {
+						if (err) throw err;
+						res.status(200).json(result);
+						client.close();
+					}); */
+
+				collection.find({}).toArray((err, result) => {
 					if (err) throw err;
 					res.status(200).json(result);
 					client.close();
@@ -240,7 +248,6 @@ module.exports = {
 	getInvoiceImage: async (req, res, next) => {
 		// Get the filename from the request params
 		// const { filename } = req.params;
-
 		// TODO: read the corresponding invoice image to the filename from file system.
 		/* fs.readFile('../public/invoice.png', (err, data) => {
 			if (err) throw err;
@@ -248,10 +255,7 @@ module.exports = {
 			res.write(data);
 			res.end(data);
 		}); */
-
 		// res.sendFile('../public/invoice.png');
-		console.log('reading image from file system');
-
 		// res.attachment('../public/invoice.png');
 	}
 };
